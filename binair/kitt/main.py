@@ -1,6 +1,11 @@
 from machine import Pin
 import time
 
+'''
+0b10101011 = 1 + 2 + 0 + 8 + 0 + 32 + 0 + 128 = 171
+'''
+
+
 led_pins = [
     Pin(0, Pin.OUT),
     Pin(1, Pin.OUT),
