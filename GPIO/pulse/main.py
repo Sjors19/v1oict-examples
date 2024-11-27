@@ -2,7 +2,8 @@ from machine import Pin
 import time
 
 gpio_pin = Pin(20, Pin.OUT)
-
+led2 = Pin(21, Pin.OUT)
+led3 = Pin(22, Pin.OUT)
 
 def pulse(pin, high_time, low_time):
     """

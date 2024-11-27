@@ -9,13 +9,13 @@ while True:
     for i in range(8):
         np[i] = [255, 0, 0]
         np.write()
-        time.sleep(0.2)
+        time.sleep(0.1)
     for i in range(8):
         np[i] = [0, 255, 0]
         np.write()
-        time.sleep(0.2)
+        time.sleep(0.1)
     for i in range(8):
         np[i] = [0, 0, 255]
         np.write()
-        time.sleep(0.2)
+        time.sleep(0.1)
 
