@@ -10,9 +10,11 @@ naar de Raspberry Pi Pico en start dit bestand op je laptop/PC.
 Hagen Patzke (hagen.patzke@hu.nl) en
 Tijmen Muller (tijmen.muller@hu.nl)
 """
-
+import machine
 from serial.tools import list_ports
 import serial
+
+from analog.pulse.main import adc_value
 
 
 def read_serial(port):
@@ -60,8 +62,10 @@ with serial.Serial(port=pico_port, baudrate=115200, bytesize=8, parity='N', stop
                 pico_output = pico_output.replace('\r\n', ' ')
                 print("[PICO] " + pico_output)
             elif choice == 'temp':
-                print('deze snapte ik niet...')
-
+                adc_value = machine.ADC(4).read_u16()
+                V = (3.3 / 65535) * adc_value
+                temp = 27 - (V - 0.706) / 0.001721
+                print(f'het is {temp : .1f} graden')
             elif choice == 'exit':
                 # Exit user input loop
                 break
