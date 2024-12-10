@@ -11,7 +11,7 @@ eerst naar de Raspberry Pi Pico. Start dan in de folder serial/PC-serial `main.p
 Hagen Patzke (hagen.patzke@hu.nl) en
 Tijmen Muller (tijmen.muller@hu.nl)
 """
-
+import machine
 from machine import Pin
 import time
 
@@ -36,5 +36,10 @@ while True:
     elif data == '1':
         print("Turning led on.")
         led(1)
+    elif data == '2':
+        adc_value = machine.ADC(4).read_u16()
+        V = (3.3 / 65535) * adc_value
+        temp = 27 - (V - 0.706) / 0.001721
+        print(f'de temperatuur is: {temp}')
     else:
         print("Unknown command.")

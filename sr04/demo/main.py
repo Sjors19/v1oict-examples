@@ -1,7 +1,7 @@
 from machine import Pin
 import time
 
-led_pin = Pin(0, Pin.OUT)
+led_pin = Pin("LED", Pin.OUT)
 
 trigger_pin = Pin(14, Pin.OUT)
 echo_pin = Pin(15, Pin.IN)

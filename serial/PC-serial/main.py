@@ -15,6 +15,7 @@ from serial.tools import list_ports
 import serial
 
 
+
 def read_serial(port):
     """Read data from serial port and return as string."""
     line = port.read(1000)
@@ -60,7 +61,12 @@ with serial.Serial(port=pico_port, baudrate=115200, bytesize=8, parity='N', stop
                 pico_output = pico_output.replace('\r\n', ' ')
                 print("[PICO] " + pico_output)
             elif choice == 'temp':
-                print('deze snapte ik niet...')
+                data = "2\r"
+                serial_port.write(data.encode())
+                pico_output = read_serial(serial_port)
+                pico_output = pico_output.replace('\r\n', ' ')
+                print("[PICO] " + pico_output)
+
 
             elif choice == 'exit':
                 # Exit user input loop
