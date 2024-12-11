@@ -4,9 +4,11 @@ import time
 servo_pin = Pin(21, Pin.OUT)
 
 
-def pulse(delay1, delay2 ):
-    """ kopier hier je implementatie van de pulse functie """
-
+def pulse(pin, high_time, low_time):
+    pin.value(1)
+    time.sleep(high_time)
+    pin.value(0)
+    time.sleep(low_time)
 
 def servo_pulse(position):
     """
@@ -20,9 +22,15 @@ def servo_pulse(position):
     Before this function is called,
     the gpio pin must be configured as output.
     """
+    high = ((2 * (position / 100 )) + 0.5) / 1000
+    low = 0.02 - high
+    pulse(servo_pin, high, low)
+
 
 while True:
     for i in range(0, 100, 1):
         servo_pulse(i)
+        time.sleep(0.02)
     for i in range(100, 0, -1):
         servo_pulse(i)
+        time.sleep(0.02)
